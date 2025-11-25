@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стратегия частного инвестора | Марина Дементьева</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Основные настройки и цвета --- */
+        :root {
+            --bg-color: #FDFBF7;       /* Слоновая кость - фон */
+            --text-color: #2C3E50;     /* Темно-синий/серый - текст */
+            --primary-color: #1B4F72;  /* Глубокий синий - доверие */
+            --accent-color: #C5A059;   /* Приглушенное золото - акценты */
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 18px; /* Крупный читаемый шрифт для 40+ */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 { font-size: 2.5rem; line-height: 1.2; }
+        h2 { font-size: 2rem; text-align: center; margin-top: 40px; }
+        
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* --- Кнопки --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #b08d4b;
+        }
+
+        /* --- 2. Первый экран (Hero) --- */
+        .hero {
+            position: relative;
+            background-color: #eaeaea; /* Заглушка, если фото не загрузится */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            min-height: 90vh; /* Почти на весь экран */
+        }
+
+        .hero-content {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding: 40px;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-image-block {
+            flex: 1;
+            height: 90vh;
+            background-image: url('marina-hero.jpg'); /* Ссылка на фото */
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+        }
+        
+        /* Затемнение для фото на мобильных, чтобы текст читался */
+        .hero-overlay {
+            display: none; 
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
+
+        /* --- 3. Видео --- */
+        .video-section {
+            background: var(--white);
+            text-align: center;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Соотношение 16:9 */
+            height: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- 4. Об авторе --- */
+        .about {
+            background-color: var(--bg-color);
+        }
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-img img {
+            width: 100%;
+            display: block;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-list li {
+            list-style: none;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .about-list li::before {
+            content: "✔";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- 5. Боли --- */
+        .pain {
+            background-color: var(--white);
+            text-align: center;
+        }
+        .pain-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .pain-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 30px;
+            background: var(--bg-color);
+            border-radius: 8px;
+        }
+        .pain-icon {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- 6. Программа (Аккордеон) --- */
+        .program {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            background: var(--white);
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary-color);
+        }
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        .accordion-header.active::after {
+            content: '-';
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            background: #fafafa;
+        }
+        .accordion-content p {
+            padding-bottom: 20px;
+        }
+
+        /* --- 7. Цена --- */
+        .price-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+        .price-section h2 {
+            color: var(--white);
+        }
+        .price-card {
+            background: var(--white);
+            color: var(--text-color);
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .price-old {
+            font-size: 1.5rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+        .price-new {
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .price-label {
+            display: inline-block;
+            background: #e7f7e7;
+            color: #27ae60;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* --- 8. Форма --- */
+        .form-area {
+            margin-top: 30px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+        }
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* --- Футер --- */
+        footer {
+            background: #1A2530;
+            color: #bbb;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+        }
+        footer a { color: #bbb; }
+
+        /* --- АДАПТИВНОСТЬ (Мобильные) --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                height: auto;
+            }
+            .hero-image-block {
+                width: 100%;
+                height: 400px; /* Высота фото на телефоне */
+                order: -1; /* Фото сверху */
+            }
+            .hero-text {
+                padding: 30px 20px;
+                text-align: center;
+            }
+            h1 { font-size: 2rem; }
+            .about-grid {
+                flex-direction: column;
+            }
+            .pain-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content container">
+            <div class="hero-text">
+                <span class="date-badge">Старт скоро</span>
+                <h1>Как создать капитал для ранней пенсии и жить на пассивный доход</h1>
+                <p style="margin: 20px 0; font-size: 1.1rem;">
+                    3-дневный онлайн-практикум. Разбор безопасных стратегий 2025–2026. Без сложных терминов и рисков.
+                </p>
+                <a href="#form-block" class="btn">Занять место за $5</a>
+            </div>
+            <div class="hero-image-block"></div>
+        </div>
+    </header>
+
+    <section class="video-section">
+        <div class="container">
+            <h2>Посмотрите личное приглашение Марины</h2>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/ZfTbjHTYU2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="marina-about.jpg" alt="Марина Дементьева">
+                </div>
+                <div class="about-text">
+                    <h2>Кто ведет марафон?</h2>
+                    <h3 style="color: var(--accent-color);">Марина Дементьева</h3>
+                    <p>Эксперт по личным финансам, инвестор. Официально «безработная» уже 7 лет, потому что капитал работает за меня.</p>
+                    <br>
+                    <ul class="about-list">
+                        <li>Живу на пассивный доход и обеспечиваю семью</li>
+                        <li>Помогла сотням женщин закрыть кредиты без стресса</li>
+                        <li>Учу сохранять, а не рисковать деньгами</li>
+                        <li>Объясняю финансы простым языком, «на пальцах»</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain">
+        <div class="container">
+            <h2>Почему просто копить — больше не работает?</h2>
+            <div class="pain-grid">
+                <div class="pain-item">
+                    <div class="pain-icon">📉</div>
+                    <h3>Инфляция съедает накопления</h3>
+                    <p>Деньги под подушкой теряют покупательную способность быстрее, чем вы их откладываете.</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">🏠</div>
+                    <h3>Недвижимость — это долго</h3>
+                    <p>Высокий порог входа и окупаемость до 20 лет. Это не лучший способ для быстрого старта.</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">👵</div>
+                    <h3>Страх за будущее</h3>
+                    <p>Надеяться только на государственную пенсию — слишком рискованная стратегия сегодня.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program">
+        <div class="container">
+            <h2>Программа практикума</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">День 1. Ревизия бюджета</div>
+                <div class="accordion-content">
+                    <p>Куда на самом деле утекают деньги? Находим скрытые резервы в вашем текущем доходе без жесткой экономии.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">День 2. Инструменты 2026 года</div>
+                <div class="accordion-content">
+                    <p>Сравнение доходности. Банковские вклады, облигации и другие консервативные инструменты. Что выбрать?</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">День 3. Ваша личная стратегия</div>
+                <div class="accordion-content">
+                    <p>Как настроить систему «Пассивный доход». Пошаговый алгоритм действий для вашего возраста и бюджета.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="price-section" id="form-block">
+        <div class="container">
+            <h2>Инвестируйте в своё спокойствие</h2>
+            <div class="price-card">
+                <div class="price-label">Специальное предложение -95%</div>
+                <div class="price-old">$95</div>
+                <div class="price-new">$5</div>
+                <p style="margin-bottom: 20px; color: #666;">Символическая цена за 3 дня практики, чтобы отсеять тех, кто не готов действовать.</p>
+                
+                <form class="form-area" onsubmit="event.preventDefault(); alert('Спасибо! Здесь будет подключена платежная система.');">
+                    <input type="text" class="form-input" placeholder="Ваше Имя" required>
+                    <input type="email" class="form-input" placeholder="Ваш Email" required>
+                    <input type="tel" class="form-input" placeholder="Ваш Телефон" required>
+                    <button type="submit" class="btn" style="width: 100%;">Оплатить участие</button>
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: #999;">
+                        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Марина Дементьева. Все права защищены.</p>
+            <br>
+            <p><a href="#">Политика конфиденциальности</a> | <a href="#">Оферта</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const acc = document.getElementsByClassName("accordion-header");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+
+</body>
+</html>
