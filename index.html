@@ -4,342 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стратегия частного инвестора | Марина Дементьева</title>
+    
+    <link rel="icon" href="logo.png" type="image/png">
+
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. Основные настройки и цвета --- */
+        /* --- Стили --- */
         :root {
-            --bg-color: #FDFBF7;       /* Слоновая кость - фон */
-            --text-color: #2C3E50;     /* Темно-синий/серый - текст */
-            --primary-color: #1B4F72;  /* Глубокий синий - доверие */
-            --accent-color: #C5A059;   /* Приглушенное золото - акценты */
+            --bg-color: #FDFBF7;
+            --text-color: #2C3E50;
+            --primary-color: #1B4F72;
+            --accent-color: #C5A059;
             --white: #FFFFFF;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 18px;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; font-size: 18px; }
+        
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--primary-color); margin-bottom: 20px; }
         h1 { font-size: 2.5rem; line-height: 1.2; }
         h2 { font-size: 2rem; text-align: center; margin-top: 40px; }
         
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 0 15px; position: relative; z-index: 2; }
+        section { padding: 60px 0; position: relative; }
 
-        section {
-            padding: 60px 0;
-        }
+        .btn { display: inline-block; background-color: var(--accent-color); color: var(--white); padding: 15px 40px; font-size: 1.1rem; font-weight: 700; text-decoration: none; border-radius: 5px; transition: background 0.3s; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3); }
+        .btn:hover { background-color: #b08d4b; }
 
-        /* --- Кнопки --- */
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
-        }
+        .hero { position: relative; background-color: #eaeaea; overflow: hidden; display: flex; align-items: center; min-height: 90vh; z-index: 1; }
+        .hero-content { width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .hero-text { flex: 1; padding: 40px; max-width: 600px; z-index: 2; }
+        .hero-image-block { flex: 1; height: 90vh; background-image: url('marina-hero.jpg'); background-size: cover; background-position: center top; position: relative; z-index: 1; }
+        .date-badge { display: inline-block; background: var(--primary-color); color: var(--white); padding: 5px 15px; font-size: 0.9rem; margin-bottom: 20px; border-radius: 20px; }
 
-        .btn:hover {
-            background-color: #b08d4b;
-        }
+        .video-section { background: var(--white); text-align: center; z-index: 2; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; max-width: 800px; margin: 0 auto; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* --- 2. Первый экран (Hero) --- */
-        .hero {
-            position: relative;
-            background-color: #eaeaea;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            min-height: 90vh;
-        }
+        .about { background-color: var(--bg-color); z-index: 2; }
+        .about-grid { display: flex; align-items: center; gap: 40px; }
+        .about-img { flex: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-img img { width: 100%; display: block; }
+        .about-text { flex: 1; }
+        .about-list li { list-style: none; margin-bottom: 10px; position: relative; padding-left: 25px; }
+        .about-list li::before { content: "✔"; color: var(--accent-color); position: absolute; left: 0; font-weight: bold; }
 
-        .hero-content {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .pain { background-color: var(--white); text-align: center; z-index: 2; }
+        .pain-grid { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+        .pain-item { flex: 1; min-width: 250px; padding: 30px; background: var(--bg-color); border-radius: 8px; }
+        .pain-icon { font-size: 30px; color: var(--primary-color); margin-bottom: 15px; }
 
-        .hero-text {
-            flex: 1;
-            padding: 40px;
-            max-width: 600px;
-            z-index: 2;
-        }
+        .program { max-width: 800px; margin: 0 auto; z-index: 2; }
+        .accordion-item { background: var(--white); border-bottom: 1px solid #ddd; margin-bottom: 10px; border-radius: 5px; }
+        .accordion-header { padding: 20px; cursor: pointer; font-weight: bold; font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center; color: var(--primary-color); }
+        .accordion-header::after { content: '+'; font-size: 1.5rem; color: var(--accent-color); }
+        .accordion-header.active::after { content: '-'; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 20px; background: #fafafa; }
+        .accordion-content p { padding-bottom: 20px; }
 
-        .hero-image-block {
-            flex: 1;
-            height: 90vh;
-            background-image: url('marina-hero.jpg');
-            background-size: cover;
-            background-position: center top;
-            position: relative;
-        }
-        
-        .date-badge {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 5px 15px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border-radius: 20px;
-        }
+        .price-section { background-color: var(--primary-color); color: var(--white); text-align: center; padding: 80px 0; position: relative; z-index: 100; }
+        .price-section h2 { color: var(--white); }
+        .price-card { background: var(--white); color: var(--text-color); max-width: 500px; margin: 40px auto; padding: 40px; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); position: relative; z-index: 101; }
+        .price-old { font-size: 1.5rem; color: #999; text-decoration: line-through; margin-bottom: 10px; }
+        .price-new { font-size: 3.5rem; font-family: 'Playfair Display', serif; color: var(--primary-color); font-weight: 700; }
+        .price-label { display: inline-block; background: #e7f7e7; color: #27ae60; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem; margin-bottom: 20px; font-weight: bold; }
 
-        /* --- 3. Видео --- */
-        .video-section {
-            background: var(--white);
-            text-align: center;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        .form-area { margin-top: 30px; position: relative; z-index: 102; }
+        .form-input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; font-family: 'Lato', sans-serif; position: relative; z-index: 103; }
+        .form-input:focus { border-color: var(--primary-color); outline: none; }
 
-        /* --- 4. Об авторе --- */
-        .about {
-            background-color: var(--bg-color);
-        }
-        .about-grid {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        .about-img {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .about-img img {
-            width: 100%;
-            display: block;
-        }
-        .about-text {
-            flex: 1;
-        }
-        .about-list li {
-            list-style: none;
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 25px;
-        }
-        .about-list li::before {
-            content: "✔";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* --- 5. Боли --- */
-        .pain {
-            background-color: var(--white);
-            text-align: center;
-        }
-        .pain-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .pain-item {
-            flex: 1;
-            min-width: 250px;
-            padding: 30px;
-            background: var(--bg-color);
-            border-radius: 8px;
-        }
-        .pain-icon {
-            font-size: 30px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        /* --- 6. Программа (Аккордеон) --- */
-        .program {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .accordion-item {
-            background: var(--white);
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .accordion-header {
-            padding: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--primary-color);
-        }
-        .accordion-header::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--accent-color);
-        }
-        .accordion-header.active::after {
-            content: '-';
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 20px;
-            background: #fafafa;
-        }
-        .accordion-content p {
-            padding-bottom: 20px;
-        }
-
-        /* --- 7. Цена --- */
-        .price-section {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 0;
-        }
-        .price-section h2 {
-            color: var(--white);
-        }
-        .price-card {
-            background: var(--white);
-            color: var(--text-color);
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        .price-old {
-            font-size: 1.5rem;
-            color: #999;
-            text-decoration: line-through;
-            margin-bottom: 10px;
-        }
-        .price-new {
-            font-size: 3.5rem;
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-        .price-label {
-            display: inline-block;
-            background: #e7f7e7;
-            color: #27ae60;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* --- 8. Форма --- */
-        .form-area {
-            margin-top: 30px;
-        }
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-        }
-        .form-input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-        .success-message {
-            display: none;
-            background-color: #d4edda;
-            color: #155724;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        /* --- Футер --- */
-        footer {
-            background: #1A2530;
-            color: #bbb;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.9rem;
-        }
+        footer { background: #1A2530; color: #bbb; text-align: center; padding: 30px; font-size: 0.9rem; position: relative; z-index: 2; }
         footer a { color: #bbb; }
 
-        /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                height: auto;
-            }
-            .hero-image-block {
-                width: 100%;
-                height: 400px;
-                order: -1;
-            }
-            .hero-text {
-                padding: 30px 20px;
-                text-align: center;
-            }
+            .hero { flex-direction: column; height: auto; }
+            .hero-image-block { width: 100%; height: 400px; order: -1; }
+            .hero-text { padding: 30px 20px; text-align: center; }
             h1 { font-size: 2rem; }
-            .about-grid {
-                flex-direction: column;
-            }
-            .pain-grid {
-                flex-direction: column;
-            }
+            .about-grid { flex-direction: column; }
+            .pain-grid { flex-direction: column; }
         }
     </style>
 </head>
@@ -416,28 +159,18 @@
     <section class="program">
         <div class="container">
             <h2>Программа практикума</h2>
-            
             <div class="accordion-item">
                 <div class="accordion-header">День 1. Ревизия бюджета</div>
-                <div class="accordion-content">
-                    <p>Куда на самом деле утекают деньги? Находим скрытые резервы в вашем текущем доходе без жесткой экономии.</p>
-                </div>
+                <div class="accordion-content"><p>Куда на самом деле утекают деньги? Находим скрытые резервы.</p></div>
             </div>
-
             <div class="accordion-item">
                 <div class="accordion-header">День 2. Инструменты 2026 года</div>
-                <div class="accordion-content">
-                    <p>Сравнение доходности. Банковские вклады, облигации и другие консервативные инструменты. Что выбрать?</p>
-                </div>
+                <div class="accordion-content"><p>Сравнение доходности. Вклады, облигации. Что выбрать?</p></div>
             </div>
-
             <div class="accordion-item">
                 <div class="accordion-header">День 3. Ваша личная стратегия</div>
-                <div class="accordion-content">
-                    <p>Как настроить систему «Пассивный доход». Пошаговый алгоритм действий для вашего возраста и бюджета.</p>
-                </div>
+                <div class="accordion-content"><p>Как настроить систему «Пассивный доход». Пошаговый алгоритм.</p></div>
             </div>
-
         </div>
     </section>
 
@@ -448,24 +181,15 @@
                 <div class="price-label">Специальное предложение -95%</div>
                 <div class="price-old">$100</div>
                 <div class="price-new">$5</div>
-                <p style="margin-bottom: 20px; color: #666;">Символическая цена за 3 дня практики, чтобы отсеять тех, кто не готов действовать.</p>
+                <p style="margin-bottom: 20px; color: #666;">Символическая цена за 3 дня практики.</p>
                 
                 <form class="form-area" id="orderForm">
                     <input type="text" class="form-input" id="name" placeholder="Ваше Имя" required>
                     <input type="email" class="form-input" id="email" placeholder="Ваш Email" required>
                     <input type="tel" class="form-input" id="phone" placeholder="Ваш Телефон" required>
-                    
                     <button type="submit" class="btn" style="width: 100%;">Оплатить участие</button>
-                    
-                    <div id="success-message" class="success-message">
-                        ✅ Спасибо! Ваша заявка отправлена. Скоро мы свяжемся с вами.
-                    </div>
-
-                    <p style="font-size: 0.8rem; margin-top: 15px; color: #999;">
-                        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
-                    </p>
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: #999;">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
                 </form>
-
             </div>
         </div>
     </section>
@@ -479,70 +203,47 @@
     </footer>
 
     <script>
-        // 1. Скрипт аккордеона (Программа)
+        // Аккордеон
         const acc = document.getElementsByClassName("accordion-header");
         for (let i = 0; i < acc.length; i++) {
             acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
+                if (panel.style.maxHeight) { panel.style.maxHeight = null; } 
+                else { panel.style.maxHeight = panel.scrollHeight + "px"; } 
             });
         }
 
-        // 2. Скрипт отправки в Telegram (С ТВОИМИ ДАННЫМИ)
+        // ОТПРАВКА И ПЕРЕАДРЕСАЦИЯ
         const TOKEN = "7835153158:AAEQ7i2Rq47ee1KHd4BFAOvYh64jUDbjcK0";
         const CHAT_ID = "166456217";
+        
+        // ОБНОВЛЕНО: Твое имя бота
+        const BOT_USERNAME = "gramazekaassistantn8n_bot"; 
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Чтобы страница не перезагружалась
-
-            // Кнопка меняет текст на "Отправка..."
+            e.preventDefault();
             const btn = this.querySelector('button');
             const originalText = btn.innerText;
-            btn.innerText = "Отправка...";
+            btn.innerText = "Переход к оплате...";
             btn.disabled = true;
 
-            // Собираем данные
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
 
-            // Красивое сообщение для Телеграма
-            const message = `<b>💰 Новая заявка на марафон!</b>\n\n👤 <b>Имя:</b> ${name}\n📧 <b>Email:</b> ${email}\n📱 <b>Телефон:</b> ${phone}`;
-
-            // URL для отправки
+            // 1. Отправляем данные АДМИНУ
+            const message = `<b>💰 Клиент нажал Оплатить!</b>\n\n👤 <b>Имя:</b> ${name}\n📧 <b>Email:</b> ${email}\n📱 <b>Телефон:</b> ${phone}`;
             const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}&parse_mode=html`;
 
-            // Отправляем
             fetch(url)
                 .then(response => {
-                    if (response.ok) {
-                        // Если всё ок:
-                        document.getElementById('orderForm').reset(); // Очистить поля
-                        document.getElementById('success-message').style.display = 'block'; // Показать "Спасибо"
-                        btn.innerText = "Готово!";
-                        
-                        // Скрыть сообщение через 5 сек
-                        setTimeout(() => {
-                            document.getElementById('success-message').style.display = 'none';
-                            btn.innerText = originalText;
-                            btn.disabled = false;
-                        }, 5000);
-                    } else {
-                        alert("Ошибка отправки. Попробуйте еще раз.");
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                    }
+                    // 2. Сразу после отправки перекидываем КЛИЕНТА в бота
+                    window.location.href = `https://t.me/${BOT_USERNAME}?start=pay`;
                 })
                 .catch(error => {
-                    console.error('Ошибка:', error);
-                    alert("Ошибка соединения с Telegram.");
-                    btn.innerText = originalText;
-                    btn.disabled = false;
+                    console.error('Error:', error);
+                    window.location.href = `https://t.me/${BOT_USERNAME}?start=pay`;
                 });
         });
     </script>
