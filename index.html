@@ -27,7 +27,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            font-size: 18px; /* Крупный читаемый шрифт для 40+ */
+            font-size: 18px;
         }
 
         h1, h2, h3 {
@@ -73,11 +73,11 @@
         /* --- 2. Первый экран (Hero) --- */
         .hero {
             position: relative;
-            background-color: #eaeaea; /* Заглушка, если фото не загрузится */
+            background-color: #eaeaea;
             overflow: hidden;
             display: flex;
             align-items: center;
-            min-height: 90vh; /* Почти на весь экран */
+            min-height: 90vh;
         }
 
         .hero-content {
@@ -98,17 +98,12 @@
         .hero-image-block {
             flex: 1;
             height: 90vh;
-            background-image: url('marina-hero.jpg'); /* Ссылка на фото */
+            background-image: url('marina-hero.jpg');
             background-size: cover;
             background-position: center top;
             position: relative;
         }
         
-        /* Затемнение для фото на мобильных, чтобы текст читался */
-        .hero-overlay {
-            display: none; 
-        }
-
         .date-badge {
             display: inline-block;
             background: var(--primary-color);
@@ -126,7 +121,7 @@
         }
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Соотношение 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             max-width: 800px;
             margin: 0 auto;
@@ -303,6 +298,15 @@
             border-color: var(--primary-color);
             outline: none;
         }
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
 
         /* --- Футер --- */
         footer {
@@ -314,7 +318,7 @@
         }
         footer a { color: #bbb; }
 
-        /* --- АДАПТИВНОСТЬ (Мобильные) --- */
+        /* --- АДАПТИВНОСТЬ --- */
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column;
@@ -322,8 +326,8 @@
             }
             .hero-image-block {
                 width: 100%;
-                height: 400px; /* Высота фото на телефоне */
-                order: -1; /* Фото сверху */
+                height: 400px;
+                order: -1;
             }
             .hero-text {
                 padding: 30px 20px;
@@ -428,59 +432,4 @@
             </div>
 
             <div class="accordion-item">
-                <div class="accordion-header">День 3. Ваша личная стратегия</div>
-                <div class="accordion-content">
-                    <p>Как настроить систему «Пассивный доход». Пошаговый алгоритм действий для вашего возраста и бюджета.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="price-section" id="form-block">
-        <div class="container">
-            <h2>Инвестируйте в своё спокойствие</h2>
-            <div class="price-card">
-                <div class="price-label">Специальное предложение -95%</div>
-                <div class="price-old">$95</div>
-                <div class="price-new">$5</div>
-                <p style="margin-bottom: 20px; color: #666;">Символическая цена за 3 дня практики, чтобы отсеять тех, кто не готов действовать.</p>
-                
-                <form class="form-area" onsubmit="event.preventDefault(); alert('Спасибо! Здесь будет подключена платежная система.');">
-                    <input type="text" class="form-input" placeholder="Ваше Имя" required>
-                    <input type="email" class="form-input" placeholder="Ваш Email" required>
-                    <input type="tel" class="form-input" placeholder="Ваш Телефон" required>
-                    <button type="submit" class="btn" style="width: 100%;">Оплатить участие</button>
-                    <p style="font-size: 0.8rem; margin-top: 15px; color: #999;">
-                        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
-                    </p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2025 Марина Дементьева. Все права защищены.</p>
-            <br>
-            <p><a href="#">Политика конфиденциальности</a> | <a href="#">Оферта</a></p>
-        </div>
-    </footer>
-
-    <script>
-        const acc = document.getElementsByClassName("accordion-header");
-        for (let i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                const panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                } 
-            });
-        }
-    </script>
-
-</body>
-</html>
+                <div class="accordion-header">День 3. Ваша личная стратегия
